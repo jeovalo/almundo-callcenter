@@ -16,10 +16,10 @@ Spring Tool Suite Version: 3.9.2.RELEASE
 
 
 ## Configuración de Hilos
-Los hilos se pueden configurar en el archivo application.properties. De dicho archivo se pueden configurar las siguientes propiedades:
-Número máximo de llamadas procesadas al mismo tiempo(de modo concurrente)
-Tiempo en segundos de la duración mínima que puede tener una llamada.
-Tiempo en segundos de la duración máxima que puede tener una llamada.
+Los hilos se pueden configurar en el archivo application.properties. En dicho archivo se pueden configurar las siguientes propiedades:
+- Número máximo de llamadas procesadas al mismo tiempo(de modo concurrente)
+- Tiempo en segundos de la duración mínima que puede tener una llamada.
+- Tiempo en segundos de la duración máxima que puede tener una llamada.
 
 ```
 callcenter.numThreads = 10
@@ -54,17 +54,15 @@ Call attributes:
 
 ```
 CallApiController => Controlador que procesa las llamadas, contiene los siguientes verbos:
-
-  - (POST)    /call                 <== Simular atender una llamada. Una Llamada es atendida por un Empleado del Callcenter
+ - (POST)    /call                 <== Simular atender una llamada. Una Llamada es atendida por un Empleado del Callcenter
 
 EmpleadoApiController => Controlador principal para manejar empleados, contiene los siguientes métodos:
-
-  - (POST)    /empleado/operador    <== Crear un nuevo  Empleado de tipo Operador en el Sistema (alta prioridad - 1)
-  - (POST)    /empleado/supervisor  <== Crear un nuevo  Empleado de tipo Supervisor en el Sistema (alta prioridad - 2)
-  - (POST)    /empleado/director    <== Crear un nuevo Empleado de tipo Director en el Sistema (alta prioridad - 3)
-  - (DELETE)  /empleado/empleados   <== Limpia el Pool de empleados que están atendiendo las llamadas
-  - (GET)     /empleado/login       <== Autenticacion del empleado en el sistema
-  - (GET)     /empleado/logout      <== Cierra la sesión del empleado actualmente autenticado
+ - (POST)    /empleado/operador    <== Crear un nuevo  Empleado de tipo Operador en el Sistema (alta prioridad - 1)
+ - (POST)    /empleado/supervisor  <== Crear un nuevo  Empleado de tipo Supervisor en el Sistema (alta prioridad - 2)
+ - (POST)    /empleado/director    <== Crear un nuevo Empleado de tipo Director en el Sistema (alta prioridad - 3)
+ - (DELETE)  /empleado/empleados   <== Limpia el Pool de empleados que están atendiendo las llamadas
+ - (GET)     /empleado/login       <== Autenticacion del empleado en el sistema
+ - (GET)     /empleado/logout      <== Cierra la sesión del empleado actualmente autenticado
 
 
 EmpleadoServicio => Manejador de la cola PriorityBlockingQueue (Empleado implementa la interface Comparable)
@@ -90,9 +88,21 @@ POST /almundo/v1/callcenter/empleado/operador
 Accept: application/json
 Content-Type: application/json
 
-{"name":"OPERADOR-1"}
+{  
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "sala":"sala de operadores",
+  "ocupado":false,
+  "tipoPrioridad":"1"
+}
 
-RESPONSE: HTTP 201 (Created)
+RESPONSE: 
+{
+    "codigo": 4,
+    "tipo": "ok",
+    "mensaje": "Se ha agregado un Agente de tipo Operador al Centro de llamadas"
+}
+HTTP 201 (Created)
 
 ```
 
@@ -103,9 +113,21 @@ POST /almundo/v1/callcenter/empleado/supervisor
 Accept: application/json
 Content-Type: application/json
 
-{"name":"SUPERVISOR-1"}
+{  
+  "id": 2,
+  "nombre": "María Polo",
+  "sala":"sala de supervisores",
+  "ocupado":false,
+  "tipoPrioridad":"2"
+}
 
-RESPONSE: HTTP 201 (Created)
+RESPONSE: 
+{
+    "codigo": 4,
+    "tipo": "ok",
+    "mensaje": "Se ha agregado un Agente de tipo Supervisor al Centro de llamadas"
+}
+HTTP 201 (Created)
 
 ```
 
@@ -116,9 +138,21 @@ POST /almundo/v1/callcenter/empleado/director
 Accept: application/json
 Content-Type: application/json
 
-{"name":"DIRECTOR-1"}
+{  
+  "id": 3,
+  "nombre": "Jeovany López Director",
+  "sala":"sala de directores",
+  "ocupado":false,
+  "tipoPrioridad":"3"
+}
 
-RESPONSE: HTTP 201 (Created)
+RESPONSE: 
+{
+    "codigo": 4,
+    "tipo": "ok",
+    "mensaje": "Se ha agregado un Agente de tipo Director al Centro de llamadas"
+}
+HTTP 201 (Created)
 
 ```
 
@@ -126,26 +160,44 @@ RESPONSE: HTTP 201 (Created)
 
 ```
 POST /almundo/v1/callcenter/call
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-message=LLamando a Almundo CallCenter
+{  
+  "id": 123,
+  "cliente": "Jeovany Lopez",
+  "mensaje":"Reserva Billete de Avión",
+  "telefono":"555555",
+  "wait":true
+}
 
-RESPONSE: HTTP 200 (OK)
+RESPONSE: 
+{
+    "codigo": 4,
+    "tipo": "ok",
+    "mensaje": "Se ha agregado la Call Correctamente, está pendiente por atenderse"
+}
+HTTP 200 (OK)
 
 ```
 
 - Limpia el Pool de empleados que están atendiendo las llamadas. Esto solo lo puede hacer un usuario que ha iniciado sesión
 
 ```
-DELETE /almundo/v1/callcenter/empleados
+DELETE /almundo/v1/callcenter/empleado/empleados
 
-RESPONSE: HTTP 200 (OK)
+RESPONSE: 
+{
+    "codigo": 4,
+    "tipo": "ok",
+    "mensaje": "Se han Eliminados todos los empleados que estaban atendiendo las llamadas"
+}
+HTTP 200 (OK)
 
 ```
 
 
 ## Build
-Los pasos son para construir y desplegar la API son los siguientes:
+Los pasos son para construir y desplegar la Aplicación Almundo Callcenter son los siguientes:
 - Instalar Java 8 y Maven.
 
 - Clonar la rama desde github  
@@ -167,7 +219,7 @@ mvn clean package
 ```
 java -jar target/callcenter-1.0.0.jar
 
-``
+```
 
 
 ## Run
@@ -179,12 +231,13 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 
 ```
 
-### Verificar la documentación con Swagger
+### Ver la documentación de la Api Almundo Callcenter con Swagger
 
-Para ver la documentación de la Api Swagger, ejecute la aplicación y visite la siguiente url local:
+Para ver la documentación de la Api con Swagger, ejecute la aplicación y visite la siguiente url local:
 
 ```
 http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
+
 ```
 
 ## Testing
@@ -256,7 +309,7 @@ Simular que entra una llamada de un cliente. La llamada es atendida por un emple
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/call -d '{  
   "id": 123,
   "cliente": "Jeovany Lopez",
-  "mensaje":"Reserva Aerea",
+  "mensaje":"Reserva Billete de Avión",
   "telefono":"555555",
   "wait":true
 }' 
