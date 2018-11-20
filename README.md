@@ -7,7 +7,7 @@ Este proyecto presenta la solución para publicar una API RESTful Almundo Callce
 La aplicación está construida con:
 
 ```
-Java version "1.8.0_121"
+Java version 1.8.0_60-b27
 Apache Maven 3.2.3 
 Spring Tool Suite Version: 3.9.2.RELEASE
 
@@ -69,13 +69,14 @@ EmpleadoApiController => Controlador principal para manejar empleados, contiene 
 
 EmpleadoServicio => Manejador de la cola PriorityBlockingQueue (Empleado implementa la interface Comparable)
 
-Dispatcher      => Procesar las llamadas con un ConcurrentTaskExecutor <= ThreadPoolTaskExecutor 
+Dispatcher       => Procesar las llamadas con un ConcurrentTaskExecutor <= ThreadPoolTaskExecutor 
 
 ThreadPoolTaskExecutor => callcenter.numThreads = 10 (Max Pool Size and Core Size)
 
 CallCenterApplication     =>  Configuración de la Aplicación Boot
 
 CallControllerTest  =>  Prueba el correcto funcionamiento del controlador CallApiController.
+
 EmpleadoControllerTest  =>  Prueba el correcto funcionamiento del controlador EmpleadoApiController.
 
 ```
@@ -92,6 +93,7 @@ Content-Type: application/json
 {"name":"OPERADOR-1"}
 
 RESPONSE: HTTP 201 (Created)
+
 ```
 
 - Insertar un nuevo empleado de Tipo Supervisor
@@ -104,6 +106,7 @@ Content-Type: application/json
 {"name":"SUPERVISOR-1"}
 
 RESPONSE: HTTP 201 (Created)
+
 ```
 
 - Insertar un nuevo empleado de Tipo Director
@@ -116,6 +119,7 @@ Content-Type: application/json
 {"name":"DIRECTOR-1"}
 
 RESPONSE: HTTP 201 (Created)
+
 ```
 
 - Simular una nueva Llamada(Call) de un cliente
@@ -127,6 +131,7 @@ Content-Type: application/x-www-form-urlencoded
 message=LLamando a Almundo CallCenter
 
 RESPONSE: HTTP 200 (OK)
+
 ```
 
 - Limpia el Pool de empleados que están atendiendo las llamadas. Esto solo lo puede hacer un usuario que ha iniciado sesión
@@ -135,35 +140,39 @@ RESPONSE: HTTP 200 (OK)
 DELETE /almundo/v1/callcenter/empleados
 
 RESPONSE: HTTP 200 (OK)
+
 ```
 
 
 ## Build
 Los pasos son para construir y desplegar la API son los siguientes:
-1. Instalar Java 8 y Maven.
+- Instalar Java 8 y Maven.
 
-2. Clonar la rama desde github  
+- Clonar la rama desde github  
 
 ```
 git clone https://github.com/jeovalo/almundo-callcenter.git
+
 ```
 
-3. Empaquetar la Aplicación
+- Empaquetar la Aplicación
 
 ```
 mvn clean package
+
 ```
 
-4. Ejecutar La Aplicación
+- Ejecutar La Aplicación
 
 ```
 java -jar target/callcenter-1.0.0.jar
+
 ``
 
 
 ## Run
 
-Para ejecutar la aplicación, run:
+Para ejecutar la aplicación, ejecutar el siguiente comando maven:
 
 ```
 mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
@@ -172,25 +181,94 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 
 ### Verificar la documentación con Swagger
 
-Para ver la documentación de la Api Swagger, ejecute la aplicación y visite:
+Para ver la documentación de la Api Swagger, ejecute la aplicación y visite la siguiente url local:
 
 ```
 http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
 ```
 
 ## Testing
-Para ejecutar los test de la Aplicación CallCenter de Almundo se puede usar maven o a traves de un terminal utilizando el comando curl
+Para ejecutar los test de la Aplicación CallCenter de Almundo se puede usar maven o a través de un terminal utilizando el comando curl
 
-###
-Se pueden ejecutar los Test de la aplicación de 
+### Ejecutar los Test con Maven
+Se pueden ejecutar los Test de la aplicación de forma automática con los siguientes comandos de maven
 
 
 ```
 mvn test
 
 mvn test -Dlogging.level.com.almundo=DEBUG  (para activar el modo DEBUG)
+
 ```
 
+### Ejecutar los Test de forma manual
+Se pueden ejecutar los Test de la aplicación de forma manual utilizando una terminal y el comando curl.
+- Ejecute la aplicación con el siguiente comando maven:
+
+```
+mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
+
+```
+
+-  Copie y pegue en el terminal los siguientes comandos dependiendo la funcionaliad que se quiera probar
+
+#### Crear un nuevo empleado de Tipo Operador
+Crear un agente del Callcenter de tipo Operador:
+```
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/operador -d '{  
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "sala":"sala de operadores",
+  "ocupado":false,
+  "tipoPrioridad":"1"
+}' 
+
+```
+#### Crear un nuevo empleado de Tipo Supervisor
+Crear un agente del Callcenter de tipo Supervisor:
+```
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/supervisor -d '{  
+  "id": 2,
+  "nombre": "María Polo",
+  "sala":"sala de supervisores",
+  "ocupado":false,
+  "tipoPrioridad":"2"
+}' 
+
+```
+
+#### Crear un nuevo empleado de Tipo Director
+Crear un agente del Callcenter de tipo Director:
+```
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/director -d '{  
+  "id": 3,
+  "nombre": "Jeovany López Director",
+  "sala":"sala de directores",
+  "ocupado":false,
+  "tipoPrioridad":"3"
+}' 
+
+```
+
+#### Crear una nueva Llamada(Call)
+Simular que entra una llamada de un cliente. La llamada es atendida por un empleado del Callcenter:
+```
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/call -d '{  
+  "id": 123,
+  "cliente": "Jeovany Lopez",
+  "mensaje":"Reserva Aerea",
+  "telefono":"555555",
+  "wait":true
+}' 
+
+```
+
+#### Eliminar todos los empleados del Callcenter
+Limpia el Pool de empleados que están atendiendo las llamadas:
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE http://localhost:8080/almundo/v1/callcenter/empleado/empleados
+
+```
 
 ## LICENSE
 
