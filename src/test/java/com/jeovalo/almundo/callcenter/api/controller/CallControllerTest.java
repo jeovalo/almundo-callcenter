@@ -48,7 +48,7 @@ final public class CallControllerTest extends CallCenterAbstractControllerTest {
 	  LOG.info(" ************ No hay empleados libres para atender las llamadas  *******************");
    JsonNode callNode = FactoryTest.crearCallJson(123, false);
 
-   mvc.perform(post("/almundo/v1/callcenter/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isBadRequest())
+   mvc.perform(post("/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isBadRequest())
    .andExpect(jsonPath("$.code").value(1)) // 1 = error
    .andExpect(jsonPath("$.type").value("error"))
    .andExpect(jsonPath("$.message").value("No hay empleados libres para atender las llamadas"));
@@ -66,7 +66,7 @@ final public class CallControllerTest extends CallCenterAbstractControllerTest {
    LOG.info(" ************ No hay empleados libres para atender las llamadas, pero el cliente puede esperar  *******************");
    JsonNode callNode = FactoryTest.crearCallJson(123, true);
 
-   mvc.perform(post("/almundo/v1/callcenter/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
+   mvc.perform(post("/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
    .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
    .andExpect(jsonPath("$.tipo").value("ok"))
    .andExpect(jsonPath("$.mensaje").value("Se ha agregado la Call Correctamente, está pendiente por atenderse"));

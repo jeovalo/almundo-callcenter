@@ -79,7 +79,7 @@ public abstract class CallCenterAbstractControllerTest {
   try {
    JsonNode callNode = FactoryTest.crearOperadorJson(id);
 
-   mvc.perform(post("/almundo/v1/callcenter/empleado/operador").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
+   mvc.perform(post("/empleado/operador").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
    .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
    .andExpect(jsonPath("$.tipo").value("ok"))
    .andExpect(jsonPath("$.mensaje").value("Se ha agregado un Agente de tipo Operador al Centro de llamadas"));
@@ -96,7 +96,7 @@ public abstract class CallCenterAbstractControllerTest {
   try {
     JsonNode callNode = FactoryTest.crearSupervisorJson(id);
 
-    mvc.perform(post("/almundo/v1/callcenter/empleado/supervisor").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
+    mvc.perform(post("/empleado/supervisor").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
     .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
     .andExpect(jsonPath("$.tipo").value("ok"))
     .andExpect(jsonPath("$.mensaje").value("Se ha agregado un Agente de tipo Supervisor al Centro de llamadas"));
@@ -114,7 +114,7 @@ public abstract class CallCenterAbstractControllerTest {
   try {
     JsonNode callNode = FactoryTest.crearDirectorJson(id);
 
-    mvc.perform(post("/almundo/v1/callcenter/empleado/director").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
+    mvc.perform(post("/empleado/director").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isCreated())
     .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
     .andExpect(jsonPath("$.tipo").value("ok"))
     .andExpect(jsonPath("$.mensaje").value("Se ha agregado un Agente de tipo Director al Centro de llamadas"));
@@ -130,7 +130,7 @@ public abstract class CallCenterAbstractControllerTest {
  protected void crearCall(final int id, final Boolean wait) {
   try {
     JsonNode callNode = FactoryTest.crearCallJson(id, wait);
-    mvc.perform(post("/almundo/v1/callcenter/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
+    mvc.perform(post("/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
     .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
     .andExpect(jsonPath("$.tipo").value("ok"))
     .andExpect(jsonPath("$.mensaje").value("Se ha agregado la Call Correctamente, está pendiente por atenderse"));
@@ -145,7 +145,7 @@ public abstract class CallCenterAbstractControllerTest {
   */
  protected void deleteEmpleados() {
   try {
-   mvc.perform(delete("/almundo/v1/callcenter/empleado/empleados").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
+   mvc.perform(delete("/empleado/empleados").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk())
    .andExpect(jsonPath("$.codigo").value(4)) // 4 = ok
    .andExpect(jsonPath("$.tipo").value("ok"))
    .andExpect(jsonPath("$.mensaje").value("Se han Eliminados todos los empleados que estaban atendiendo las llamadas"));

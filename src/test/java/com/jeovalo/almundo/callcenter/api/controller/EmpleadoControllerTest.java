@@ -150,7 +150,7 @@ final public class EmpleadoControllerTest extends CallCenterAbstractControllerTe
     try {
      
       JsonNode callNode = FactoryTest.crearCallJson(i, false);
-      mvc.perform(post("/almundo/v1/callcenter/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+      mvc.perform(post("/call").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(callNode.toString())).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
     } catch (Exception e) {
      fail("API-REST not Working");
     }

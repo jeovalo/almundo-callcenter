@@ -26,7 +26,6 @@ import io.swagger.annotations.ApiParam;
  *
  */
 @RestController
-@RequestMapping(value = "/almundo/v1/callcenter")
 public class CallApiController extends RestHandler implements CallApi {
     // Servicio Dispatcher de Llamadas(Calls)
     @Autowired

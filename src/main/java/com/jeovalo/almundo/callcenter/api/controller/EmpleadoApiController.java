@@ -36,7 +36,6 @@ import io.swagger.annotations.ApiParam;
  *
  */
 @RestController
-@RequestMapping(value = "/almundo/v1/callcenter")
 public class EmpleadoApiController extends RestHandler implements EmpleadoApi {
 
   private static final Logger log = LoggerFactory.getLogger(EmpleadoApiController.class);

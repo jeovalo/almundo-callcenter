@@ -29,9 +29,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAutoConfiguration // Configuracion automatica de Sprint Boot
 @PropertySource(value = { "classpath:application.properties"})
 @EnableSwagger2
-@ComponentScan(basePackages = { "com.jeovalo.almundo.callcenter", "com.jeovalo.almundo.callcenter.api", "com.jeovalo.almundo.callcenter.api.controller" })
-// @ComponentScan(basePackages = { "com.jeovalo.almundo.callcenter", "com.jeovalo.almundo.callcenter.api", "com.jeovalo.almundo.callcenter.api.controller" })
-public class CallCenterApplication extends SpringBootServletInitializer implements AsyncConfigurer { // CommandLineRunner, AsyncConfigurer {
+@ComponentScan(basePackages = { "com.jeovalo.almundo.callcenter" })
+public class CallCenterApplication extends SpringBootServletInitializer implements AsyncConfigurer { 
   private static final Class<CallCenterApplication> applicationClass = CallCenterApplication.class;
   
   private static final Logger LOG = LoggerFactory.getLogger(applicationClass);
