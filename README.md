@@ -232,17 +232,14 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 ```
 
 ## Documentación de la Api Almundo Callcenter
-
 Para ver la documentación de la Api con Swagger, ejecute la aplicación y visite una de las siguientes urls locales:
 
 ```
 http://localhost:8080/almundo/v1/callcenter
-
 ```
-o
+
 ```
 http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
-
 ```
 
 En la documentación de la api se puede ver en formato html entre otras cosas:
