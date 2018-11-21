@@ -35,13 +35,6 @@ public class CallCenterApplication extends SpringBootServletInitializer implemen
   private static final Class<CallCenterApplication> applicationClass = CallCenterApplication.class;
   
   private static final Logger LOG = LoggerFactory.getLogger(applicationClass);
-//
-//    @Override
-//    public void run(String... arg0) throws Exception {
-//        if (arg0.length > 0 && arg0[0].equals("exitcode")) {
-//            throw new ExitException();
-//        }
-//    }
 
     // Maximo numero de hilos en el Pool que atenderan la Cola con Prioridades
     @Value("${callcenter.numThreads}")

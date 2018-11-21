@@ -8,8 +8,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeovalo.almundo.callcenter.api.CallApi;
@@ -19,12 +20,15 @@ import com.jeovalo.almundo.callcenter.service.Dispatcher;
 
 import io.swagger.annotations.ApiParam;
 
-@Controller
+/**
+ * Controlador de Llamadas 
+ * @author jeovalo
+ *
+ */
+@RestController
+@RequestMapping(value = "/almundo/v1/callcenter")
 public class CallApiController extends RestHandler implements CallApi {
-
-    // private static final Logger log = LoggerFactory.getLogger(CallApiController.class);
-
-    // Servicio Dispatcher Calls
+    // Servicio Dispatcher de Llamadas(Calls)
     @Autowired
     private Dispatcher dispatcher;
     

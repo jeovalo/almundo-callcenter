@@ -30,7 +30,7 @@ public interface CallApi {
             })
     }, tags={ "call", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "call creada", response = ApiRespuesta.class),
+        @ApiResponse(code = 201, message = "call creada", response = ApiRespuesta.class),
         @ApiResponse(code = 405, message = "Entrada invalida") })
     @RequestMapping(value = "/call",
         produces = { "application/json", "application/xml" }, 

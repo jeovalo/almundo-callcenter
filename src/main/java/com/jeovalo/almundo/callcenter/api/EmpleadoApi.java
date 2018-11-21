@@ -27,7 +27,7 @@ public interface EmpleadoApi {
   
   @ApiOperation(value = "Crea un recurso empleado de tipo operador", nickname = "crearOperador", notes = "Esto solo lo puede hacer un usuario que ha iniciado sesión", response = ApiRespuesta.class, tags={ "empleado", })
   @ApiResponses(value = { 
-      @ApiResponse(code = 200, message = "operador creado", response = ApiRespuesta.class),
+      @ApiResponse(code = 201, message = "operador creado", response = ApiRespuesta.class),
       @ApiResponse(code = 401, message = "No tiene Autorización", response = ApiRespuesta.class),
       @ApiResponse(code = 403, message = "Operación No Permitida", response = ApiRespuesta.class),
       @ApiResponse(code = 404, message = "Operación No Encontrada", response = ApiRespuesta.class),
@@ -40,7 +40,7 @@ public interface EmpleadoApi {
 
   @ApiOperation(value = "Crea un recurso empleado de tipo supervisor", nickname = "crearSupervisor", notes = "Esto solo lo puede hacer un usuario que ha iniciado sesión", response = ApiRespuesta.class, tags={ "empleado", })
   @ApiResponses(value = { 
-      @ApiResponse(code = 200, message = "Supervisor creado", response = ApiRespuesta.class),
+      @ApiResponse(code = 201, message = "Supervisor creado", response = ApiRespuesta.class),
       @ApiResponse(code = 401, message = "No tiene Autorización", response = ApiRespuesta.class),
       @ApiResponse(code = 403, message = "Operación No Permitida", response = ApiRespuesta.class),
       @ApiResponse(code = 404, message = "Operación No Encontrada", response = ApiRespuesta.class),
@@ -53,7 +53,7 @@ public interface EmpleadoApi {
 
     @ApiOperation(value = "Crea un recurso empleado de tipo director", nickname = "crearDirector", notes = "Esto solo lo puede hacer un usuario que ha iniciado sesión", response = ApiRespuesta.class, tags={ "empleado", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "director creado", response = ApiRespuesta.class),
+        @ApiResponse(code = 201, message = "director creado", response = ApiRespuesta.class),
         @ApiResponse(code = 401, message = "No tiene Autorización", response = ApiRespuesta.class),
         @ApiResponse(code = 403, message = "Operación No Permitida", response = ApiRespuesta.class),
         @ApiResponse(code = 404, message = "Operación No Encontrada", response = ApiRespuesta.class),

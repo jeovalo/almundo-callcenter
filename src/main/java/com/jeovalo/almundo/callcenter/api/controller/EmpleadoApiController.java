@@ -12,9 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeovalo.almundo.callcenter.api.EmpleadoApi;
@@ -29,7 +30,13 @@ import com.jeovalo.almundo.callcenter.service.EmpleadoServicio;
 
 import io.swagger.annotations.ApiParam;
 
-@Controller
+/**
+ * Controlador de Llamadas 
+ * @author jeovalo
+ *
+ */
+@RestController
+@RequestMapping(value = "/almundo/v1/callcenter")
 public class EmpleadoApiController extends RestHandler implements EmpleadoApi {
 
   private static final Logger log = LoggerFactory.getLogger(EmpleadoApiController.class);
@@ -52,7 +59,7 @@ public class EmpleadoApiController extends RestHandler implements EmpleadoApi {
       case DIRECTOR: {
         this.empleadoServicio.putEmpleado(empleado);
         ApiRespuesta respuesta = new ApiRespuesta(ApiRespuesta.OK, "Se ha agregado un Agente de tipo " + tipoEmpleado.nombre() + " al Centro de llamadas");
-        return new ResponseEntity<ApiRespuesta>(respuesta, HttpStatus.OK);
+        return new ResponseEntity<ApiRespuesta>(respuesta, HttpStatus.CREATED);
       }
       default: {
         throw new EmployeeTypeNotValidException("El Tipo de Empleado no es Valido. Debe ser: Operador, Supervisor o Director");

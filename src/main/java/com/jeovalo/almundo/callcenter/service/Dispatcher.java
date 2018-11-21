@@ -17,7 +17,7 @@ import com.jeovalo.almundo.callcenter.api.exception.NotFreeEmployeesException;
 import com.jeovalo.almundo.callcenter.model.Empleado;
 
 /**
- *  Dispather Message Service. Take calls and take head free employee from Queue
+ *  Despacha las llamadas a los empleados. 
  * 
  * Almundo CallCenter Dispatcher Class
  * @author jeovalo
