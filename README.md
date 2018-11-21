@@ -246,13 +246,17 @@ Para ejecutar los test de la Aplicación CallCenter de Almundo se puede usar mav
 ### Ejecutar los Test con Maven
 Se pueden ejecutar los Test de la aplicación de forma automática con los siguientes comandos de maven
 
-
+- Ejecutar todos los test
 ```
 mvn test
 
+```
+- Ejecutar todos los test en modo DEBUG habilitado
+```
 mvn test -Dlogging.level.com.almundo=DEBUG  (para activar el modo DEBUG)
 
 ```
+
 
 ### Ejecutar los Test de forma manual
 Se pueden ejecutar los Test de la aplicación de forma manual utilizando una terminal y el comando curl.
@@ -267,6 +271,7 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 
 #### Crear un nuevo empleado de Tipo Operador
 Crear un agente del Callcenter de tipo Operador:
+- Petición:
 ```
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/operador -d '{  
   "id": 1,
@@ -275,10 +280,15 @@ curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v
   "ocupado":false,
   "tipoPrioridad":"1"
 }' 
-
 ```
+- Respuesta:
+```
+{"codigo":4,"tipo":"ok","mensaje":"Se ha agregado un Agente de tipo Operador al Centro de llamadas"}
+```
+
 #### Crear un nuevo empleado de Tipo Supervisor
 Crear un agente del Callcenter de tipo Supervisor:
+- Petición:
 ```
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/supervisor -d '{  
   "id": 2,
@@ -287,11 +297,15 @@ curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v
   "ocupado":false,
   "tipoPrioridad":"2"
 }' 
-
+```
+- Respuesta:
+```
+{"codigo":4,"tipo":"ok","mensaje":"Se ha agregado un Agente de tipo Supervisor al Centro de llamadas"}
 ```
 
 #### Crear un nuevo empleado de Tipo Director
 Crear un agente del Callcenter de tipo Director:
+- Petición:
 ```
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/empleado/director -d '{  
   "id": 3,
@@ -300,11 +314,15 @@ curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v
   "ocupado":false,
   "tipoPrioridad":"3"
 }' 
-
+```
+- Respuesta:
+```
+{"codigo":4,"tipo":"ok","mensaje":"Se ha agregado un Agente de tipo Director al Centro de llamadas"}
 ```
 
 #### Crear una nueva Llamada(Call)
 Simular que entra una llamada de un cliente. La llamada es atendida por un empleado del Callcenter:
+- Petición:
 ```
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v1/callcenter/call -d '{  
   "id": 123,
@@ -313,7 +331,10 @@ curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v
   "telefono":"555555",
   "wait":true
 }' 
-
+```
+- Respuesta:
+```
+{"codigo":4,"tipo":"ok","mensaje":"Se ha agregado la Call Correctamente, está pendiente por atenderse"}
 ```
 
 #### Eliminar todos los empleados del Callcenter
