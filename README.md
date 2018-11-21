@@ -236,16 +236,14 @@ Para ver la [documentación](http://localhost:8080/almundo/v1/callcenter/swagger
 
 
 ```
-[link](http://localhost:8080/almundo/v1/callcenter)
 http://localhost:8080/almundo/v1/callcenter
 ```
 
 ```
-[link](http://localhost:8080/almundo/v1/callcenter/swagger-ui.html)
 http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
 ```
 
-En la documentación de la api se puede ver en formato html entre otras cosas:
+En la [documentación](http://localhost:8080/almundo/v1/callcenter/swagger-ui.html) de la api se puede ver en formato html entre otras cosas:
 - Todos los servicios(verbos) de la API RESTful Almundo Callcenter.
 - Todos los formatos (json/xml) que soporta la Api.
 - Listado de todas las operaciones que forman cada servicio Rest.
