@@ -239,22 +239,23 @@ cd almundo-callcenter
 
 
 - Empaquetar la Aplicación
-  El siguiente comando limpia la caché, compila, ejecuta todos los tests y empqueta en un archivo **.jar** la aplicación
-  de Almundo Callcenter
+  - El siguiente comando limpia la caché, compila, ejecuta todos los tests y empqueta en un archivo **.jar** la 
+    aplicación de Almundo Callcenter
+    
 ```
 mvn clean package
 
 ```
 
-- Ejecutar La Aplicación
+- Ejecutar la Aplicación
 
 ```
 java -jar target/callcenter-1.0.0.jar
 
 ```
-- Ejecutar comandos **curl** para probar ejecución del paso anterior
-  Se pueden ejecutar los Test de la aplicación de forma manual utilizando una terminal y el comando **curl** (como se indica 
-  al final de este documento).
+- Probar la Aplicacin con comandos **curl**
+  - Se pueden ejecutar los Test de la aplicación de forma manual utilizando una terminal y el comando **curl** (como
+    se indica al final de este documento).
   
 
 ## Run
