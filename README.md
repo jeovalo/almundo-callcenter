@@ -245,6 +245,13 @@ http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
 
 ```
 
+En la documentación de la api se puede ver en formato html entre otras cosas:
+- Todos los servicios(verbos) de la API RESTful Almundo Callcenter.
+- Todos los formatos (json/xml) que soporta la Api.
+- Listado de todas las operaciones que forman cada servicio Rest.
+- Ejemplos de request y response de la Api.
+- Códigos de HTTP Status Code para cada recurso.
+
 ## Testing
 Para ejecutar los test de la Aplicación CallCenter de Almundo se puede usar maven o a través de un terminal utilizando el comando curl
 
