@@ -231,8 +231,16 @@ git clone https://github.com/jeovalo/almundo-callcenter.git
 
 ```
 
-- Empaquetar la Aplicación
+```
+cd almundo-callcenter
 
+```
+
+
+
+- Empaquetar la Aplicación
+  El siguiente comando limpia la caché, compila, ejecuta todos los tests y empqueta en un archivo **.jar** la aplicación
+  de Almundo Callcenter
 ```
 mvn clean package
 
@@ -244,7 +252,10 @@ mvn clean package
 java -jar target/callcenter-1.0.0.jar
 
 ```
-
+- Ejecutar comandos **curl** para probar ejecución del paso anterior
+  Se pueden ejecutar los Test de la aplicación de forma manual utilizando una terminal y el comando **curl** (como se indica 
+  al final de este documento).
+  
 
 ## Run
 
