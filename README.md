@@ -263,7 +263,7 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 
 ```
 
--  Copie y pegue en el terminal los siguientes comandos dependiendo la funcionaliad que se quiera probar
+-  Copie y pegue en el terminal los siguientes comandos dependiendo la funcionalidad que se quiera probar
 
 #### Crear un nuevo empleado de Tipo Operador
 Crear un agente del Callcenter de tipo Operador:
@@ -318,11 +318,15 @@ curl -H "Content-Type: application/json" -X POST http://localhost:8080/almundo/v
 
 #### Eliminar todos los empleados del Callcenter
 Limpia el Pool de empleados que están atendiendo las llamadas:
+- Petición:
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE http://localhost:8080/almundo/v1/callcenter/empleado/empleados
 
 ```
-
+- Respuesta:
+```
+{"codigo":4,"tipo":"ok","mensaje":"Se han Eliminados todos los empleados que estaban atendiendo las llamadas"}
+```
 ## LICENSE
 
 Este código es liberado bajo licencia Apache License 2.0. Ver la LICENCIA para más detalles.
