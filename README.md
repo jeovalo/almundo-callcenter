@@ -12,8 +12,31 @@ Apache Maven 3.2.3
 Spring Tool Suite Version: 3.9.2.RELEASE
 
 ```
+## Descripcin de la Solución
 
+Para implementar la solución se utilizó PriorityBlockingQueue para almacenar los empleados que son añadidos al centro de llamadas. Ésta es una cola con bloqueo y con prioridades, no una cola de tipo "primero en entrar/primero en salir". Los elementos de dicha cola(Empleados en este caso) se van eliminando por orden de prioridades, seguiendo el siguiente orden: **OPERADOR > SUPERVISOR > DIRECTOR**. 
+PriorityBlockingQueue tiene una capacidad ilimitada, por esta razón(nunca se llena) al añadir un empleado a la cola nunca se bloquea(**put**). Caso contrario ocurre con la operación recuperar un empleado(**take**), la cual se bloquea si la cola está vacía.
 
+### Extras/Plus
+- Dar alguna solución sobre qué pasa con una llamada cuando no hay ningún empleado libre.
+  - Se definió un atributo en la Call de tipo Boolean llamado **wait**, la cual indica si el cliente que llama
+    está dispuesto a esperar que se desocupe un agente del centro de llamada(empleado).
+  - Cuando no hay ningún empleado libre, si **wait** es **true** el sistema espera que se desocupe un empleado para que
+    atienda la llamada. Si **wait** es **false** el sistema **rechaza** inmediatamente la llamada.
+    
+- Dar alguna solución sobre qué pasa con una llamada cuando entran más de 10 llamadas concurrentes.
+  - Se definió un atributo en la Call de tipo Boolean llamado **wait**, la cual indica si el cliente que llama
+    está dispuesto a esperar que se desocupe un agente del centro de llamada(empleado).
+  - Se utilizó una cola **PriorityBlockingQueue**, la cual permite que si entran más de 10 llamadas concurrentes, 
+    las Calls(llamadas) que tengas la propiedad **wait** en **true** esperarán en ser atendidas(**se bloquea el hilo**)
+    y las que tengan el valor de **false** serán rechazadas inmediatamente.
+
+- Agregar los tests unitarios que se crean convenientes.
+  - Se agregan test para las funcionalidades básicas.
+  - Se agregan test para las funcionalidades que implican concurrencia y competencia de hilos.
+
+- Agregar documentación de código
+Para documentar la API RESTful Almundo Callcenter se utilizó un estandar el la especificación y documentación de APIS llamado [Swagger](https://swagger.io/).  
 
 ## Configuración de Hilos
 Los hilos se pueden configurar en el archivo application.properties. En dicho archivo se pueden configurar las siguientes propiedades:
