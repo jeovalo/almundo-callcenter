@@ -14,7 +14,7 @@ Spring Tool Suite Version: 3.9.2.RELEASE
 ```
 ## Descripción de la Solución
 
-Para implementar la solución se utilizó **PriorityBlockingQueue** para almacenar los empleados que son añadidos al centro de llamadas. Ésta es una cola con bloqueo y con prioridades, no una cola de tipo "primero en entrar/primero en salir". Los elementos de dicha cola(Empleados en este caso) se van eliminando por orden de prioridades, seguiendo el siguiente orden: **OPERADOR > SUPERVISOR > DIRECTOR**. 
+Para implementar la solución se utilizó **PriorityBlockingQueue** para almacenar los empleados que son añadidos al centro de llamadas. Ésta es una cola con bloqueo y con prioridades, NO ES una cola de tipo "primero en entrar/primero en salir". Los elementos de dicha cola(Empleados en este caso) se van eliminando por orden de prioridades, siguiendo el siguiente orden: **OPERADOR > SUPERVISOR > DIRECTOR**. 
 PriorityBlockingQueue tiene una capacidad ilimitada, por esta razón(nunca se llena) al añadir un empleado a la cola nunca se bloquea(**put**). Caso contrario ocurre con la operación recuperar un empleado(**take**), la cual se bloquea si la cola está vacía.
 
 ### Extras/Plus
@@ -396,4 +396,4 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X DEL
 ```
 ## LICENSE
 
-Este código es liberado bajo licencia Apache License 2.0. Ver la LICENCIA para más detalles.
+Este código es liberado bajo licencia jeovalo. Ver la LICENCIA para más detalles.
