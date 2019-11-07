@@ -1,6 +1,6 @@
 ## Acerca
 
-Este proyecto presenta la solución para publicar una API RESTful Almundo Callcenter utilizando Spring Boot, Spring MVC.
+Este proyecto presenta la solución para publicar una API RESTful de un simple Callcenter utilizando Spring Boot, Spring MVC.
 
 
 
@@ -36,7 +36,7 @@ PriorityBlockingQueue tiene una capacidad ilimitada, por esta razón(nunca se ll
   - Se agregan test para las funcionalidades que implican concurrencia y competencia de hilos.
 
 - Agregar documentación de código.
-  - Para documentar la API RESTful Almundo Callcenter se utilizó un estandar el la especificación y documentación de APIS
+  - Para documentar la API RESTful Callcenter se utilizó un estandar el la especificación y documentación de APIS
     llamado [Swagger](https://swagger.io/).  
 
 ## Configuración de Hilos
@@ -221,7 +221,7 @@ HTTP 200 (OK)
 
 
 ## Build
-Los pasos son para construir y desplegar la Aplicación Almundo Callcenter son los siguientes:
+Los pasos son para construir y desplegar la Aplicación Callcenter son los siguientes:
 - Instalar Java 8 y Maven.
 
 - Clonar la rama desde github  
@@ -240,7 +240,7 @@ cd almundo-callcenter
 
 - Empaquetar la Aplicación
   - El siguiente comando limpia la caché, compila, ejecuta todos los tests y empqueta en un archivo **.jar** la 
-    aplicación de Almundo Callcenter
+    aplicación de Callcenter
     
 ```
 mvn clean package
@@ -267,7 +267,7 @@ mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 
 ```
 
-## Documentación de la Api Almundo Callcenter
+## Documentación de la Api Callcenter
 Para ver la [documentación](http://localhost:8080/almundo/v1/callcenter/swagger-ui.html) de la Api con Swagger, ejecute la aplicación y visite una de las siguientes urls locales:
 
 
@@ -280,14 +280,14 @@ http://localhost:8080/almundo/v1/callcenter/swagger-ui.html
 ```
 
 En la [documentación](http://localhost:8080/almundo/v1/callcenter/swagger-ui.html) de la api se puede ver en formato html entre otras cosas:
-- Todos los servicios(verbos) de la API RESTful Almundo Callcenter.
+- Todos los servicios(verbos) de la API RESTful Callcenter.
 - Todos los formatos (json/xml) que soporta la Api.
 - Listado de todas las operaciones que forman cada servicio Rest.
 - Ejemplos de request y response de la Api.
 - Códigos de HTTP Status Code para cada recurso.
 
 ## Testing
-Para ejecutar los test de la Aplicación CallCenter de Almundo se puede usar maven o a través de un terminal utilizando el comando curl
+Para ejecutar los test de la Aplicación CallCenter se puede usar maven o a través de un terminal utilizando el comando curl
 
 ### Ejecutar los Test con Maven
 Se pueden ejecutar los Test de la aplicación de forma automática con los siguientes comandos de maven
